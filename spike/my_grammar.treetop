@@ -1,0 +1,9 @@
+grammar MyGrammar
+  rule greeting
+    ('hello ' / 'ahoy ') (name)
+  end
+  
+  rule name
+    'chomsky' / 'bob' / 'alice'
+  end
+end

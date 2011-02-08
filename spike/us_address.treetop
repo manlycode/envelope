@@ -1,0 +1,57 @@
+grammar USAddress
+  rule address
+    street_line (building_line)* locality_line
+  end
+  
+  rule street_line
+    street_number ' ' street_name [\n]
+  end
+  
+  rule building_line
+    ('Apt.' / 'APT') ' ' [#]* [0-9]+ [\n]
+  end
+  
+  rule locality_line
+    city ', ' state ' ' zip
+  end
+  
+  rule street_number
+    number
+  end
+  
+  rule street_name
+    (string)+
+  end
+  
+  rule city
+    (string)+
+  end
+  
+  rule state
+    [A-Z]+
+  end
+  
+  rule zip
+    [0-9] [0-9] [0-9] [0-9] [0-9]
+    /
+    [0-9] [0-9] [0-9] [0-9] [0-9] '-' [0-9] [0-9] [0-9] [0-9]
+  end
+  
+  rule number
+      [1-9] [0-9]+
+  end
+  
+  rule string
+      word space string
+      /
+      word
+  end
+
+  rule word
+      [0-9a-zA-Z\.]+
+  end
+  
+  rule space
+      ' '+
+  end
+end
